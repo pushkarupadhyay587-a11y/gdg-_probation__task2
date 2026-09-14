@@ -1,1 +1,36 @@
-env 
+# Virtual environments — never commit these
+env/
+venv/
+.venv/
+ENV/
+
+# Python bytecode / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Trained models — usually too large/binary for git; remove this
+# line if you specifically want to version-control your .pkl files
+models/*.pkl
+
+# Environment variables / secrets, if you add any (API keys, etc.)
+.env
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# Editor/IDE settings
+.vscode/
+.idea/
+
+# Streamlit local cache
+.streamlit/
+
+# Distribution / packaging (only relevant if you ever build a package)
+build/
+dist/
+*.egg-info/
