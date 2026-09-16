@@ -7,6 +7,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from pathlib import Path
+import joblib 
 
 csv_path = Path(__file__).resolve().parents[1] / "notebooks" / "data" / "processed" / "scaled_data.csv"
 
@@ -17,23 +18,22 @@ y = df["Will_Buy_EV"]
 
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
+models ={
+"lr_model" : LogisticRegression(),
+"knn" : KNeighborsClassifier(n_neighbors=5),
+"dt_model" : DecisionTreeClassifier(random_state=42),
+"nb_model" : GaussianNB(),
+"svc_model" : SVC()
+}
 
-lr_model = LogisticRegression()
-knn = KNeighborsClassifier(n_neighbors=5)
-dt_model = DecisionTreeClassifier(random_state=42)
-nb_model = GaussianNB()
-svc_model = SVC()
 
-models = [lr_model,knn,dt_model,nb_model,svc_model]
-
-for model in models :
-    model.fit(x_train,y_train)
-
-print("Model scores :")
-for model in models :
-    y_prd  = model.predict(x_test)
-    print(f"{model} : ",accuracy_score(y_test,y_prd))
-    
+for name, model in models.items():
+    model.fit(x_train, y_train)
+    y_pred = model.predict(x_test)
+    acc = accuracy_score(y_test, y_pred)
+    print(f"{name} accuracy: {acc}")
+    model_path = csv_path = Path(__file__).resolve().parents[1] / "models" / "preprocessor" / f"{model}.pkl"
+    joblib.dump(model, model_path)
     
 # the best model comess out ot be the svc_model with the 87.6% accurracy
 """

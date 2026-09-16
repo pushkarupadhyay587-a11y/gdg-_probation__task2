@@ -34,3 +34,5 @@ final_csv_path = csv_path = Path(__file__).resolve().parents[1] / "notebooks" / 
 
 df_processed.to_csv(final_csv_path,index=False)
 
+preprocessor_path = csv_path = Path(__file__).resolve().parents[1] / "models" / "preprocessor" / "preprocessor.pkl"
+joblib.dump(preprocessor, preprocessor_path)
