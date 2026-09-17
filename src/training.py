@@ -21,7 +21,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random
 models ={
 "lr_model" : LogisticRegression(),
 "knn" : KNeighborsClassifier(n_neighbors=5),
-"dt_model" : DecisionTreeClassifier(random_state=42),
 "nb_model" : GaussianNB(),
 "svc_model" : SVC()
 }
@@ -32,7 +31,7 @@ for name, model in models.items():
     y_pred = model.predict(x_test)
     acc = accuracy_score(y_test, y_pred)
     print(f"{name} accuracy: {acc}")
-    model_path = csv_path = Path(__file__).resolve().parents[1] / "models" / "preprocessor" / f"{model}.pkl"
+    model_path = csv_path = Path(__file__).resolve().parents[1] / "models" / "prediction_model" / f"{model}.pkl"
     joblib.dump(model, model_path)
     
 # the best model comess out ot be the svc_model with the 87.6% accurracy
@@ -40,7 +39,6 @@ for name, model in models.items():
 Model scores :
 LogisticRegression() :  0.873
 KNeighborsClassifier() :  0.849
-DecisionTreeClassifier(random_state=42) :  0.817
 GaussianNB() :  0.632
 SVC() :  0.876
 """
