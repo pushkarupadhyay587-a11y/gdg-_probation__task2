@@ -7,7 +7,7 @@ import streamlit as st
 API_URL = st.sidebar.text_input("FastAPI URL", "http://127.0.0.1:8001/predict")
 
 st.title("EV Purchase Prediction")
-st.caption("Predict whether a customer is likely to buy an EV using the FastAPI model backend.")
+st.caption("Predict whether a customer is likely to buy an EV 🚗.")
 
 with st.form("ev_form"):
     col1, col2 = st.columns(2)

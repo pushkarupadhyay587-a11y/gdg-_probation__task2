@@ -5,7 +5,6 @@ from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
 from pathlib import Path
 import joblib 
 
@@ -31,7 +30,7 @@ for name, model in models.items():
     y_pred = model.predict(x_test)
     acc = accuracy_score(y_test, y_pred)
     print(f"{name} accuracy: {acc}")
-    model_path = csv_path = Path(__file__).resolve().parents[1] / "models" / "prediction_model" / f"{model}.pkl"
+    model_path = csv_path = Path(__file__).resolve().parents[1] / "models" / "prediction_model" / f"{name}.pkl"
     joblib.dump(model, model_path)
     
 # the best model comess out ot be the svc_model with the 87.6% accurracy
