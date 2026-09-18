@@ -1,5 +1,4 @@
-pandas 
-numpy 
-sklearn 
-joblib 
-pathlib
+pandas
+numpy
+scikit-learn
+joblib
